@@ -57,26 +57,16 @@ test("La funzione createSlug lancia un errore se il titolo è vuoto o non valido
     expect(() => createSlug({})).toThrow();
 })
 
-const posts = [
-    {
-        id: 1,
-        title: 'Cyberpunk 2077',
-        slug: createSlug('Cyberpunk 2077')
-    },
-    {
-        id: 2,
-        title: 'Outer Wilds',
-        slug: createSlug('Outer Wilds')
-    },
-    {
-        id: 3,
-        title: 'Mass Effect 2',
-        slug: createSlug('Mass Effect 2')
-    }
-]
+const posts = ['Cyberpunk 2077', 'Outer Wilds', 'Mass Effect 2']
+    .map((g, i) => ({ id: i + 1, title: g, slug: createSlug(g) }));
 
 // Snack 7
 test("La funzione findPostById restituisce il post corretto dato l'array di post e l'id", () => {
+    expect(findPostById(posts, 3)).toEqual({
+        id: 3,
+        title: 'Mass Effect 2',
+        slug: createSlug('Mass Effect 2')
+    });
     expect(findPostById(posts, 2)).toEqual({
         id: 2,
         title: 'Outer Wilds',

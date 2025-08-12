@@ -36,7 +36,7 @@ const isPalindrome = string => {
 const findPostById = (arr, id) => {
     if (isNaN(id)) throw new Error('Errore: ID deve essere un numero!');
     if (!Array.isArray(arr)) throw new Error('Errore: Non è stato passato un array!');
-    const [postToFind] = arr.filter(item => item.id === id);
+    const postToFind = arr.find(item => item.id === id);
     if (!postToFind) throw new Error('Errore: Il post non è stato trovato!');
     return postToFind;
 }
