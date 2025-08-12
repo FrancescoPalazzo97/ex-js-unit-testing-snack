@@ -1,0 +1,21 @@
+{
+  "name": "ex-js-unit-testing-snack",
+  "version": "1.0.0",
+  "description": "**Repo:** `ex-js-unit-testing-snack`",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrancescoPalazzo97/ex-js-unit-testing-snack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/FrancescoPalazzo97/ex-js-unit-testing-snack/issues"
+  },
+  "homepage": "https://github.com/FrancescoPalazzo97/ex-js-unit-testing-snack#readme"
+}
