@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/FrancescoPalazzo97/ex-js-unit-testing-snack/issues"
   },
-  "homepage": "https://github.com/FrancescoPalazzo97/ex-js-unit-testing-snack#readme"
+  "homepage": "https://github.com/FrancescoPalazzo97/ex-js-unit-testing-snack#readme",
+  "devDependencies": {
+    "jest": "^30.0.5"
+  }
 }
