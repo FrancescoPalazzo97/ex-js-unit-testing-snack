@@ -3,6 +3,6 @@ const getInitials = string => {
     return `${name[0].toUpperCase()}.${surname[0].toUpperCase()}.`;
 };
 
-const createSlug = string => string.toLowerCase();
+const createSlug = string => string.toLowerCase().trim();
 
 module.exports = { getInitials, createSlug };
