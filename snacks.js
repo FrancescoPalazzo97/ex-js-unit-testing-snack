@@ -22,4 +22,15 @@ const average = arr => {
     return sum / arr.length;
 };
 
-module.exports = { getInitials, createSlug, average };
+//Snack 5
+const isPalindrome = string => {
+    const stringWithoutSpaces = string.replaceAll(' ', '').toLowerCase();
+    return stringWithoutSpaces === stringWithoutSpaces.split('').reverse().join('');
+}
+
+module.exports = {
+    getInitials,
+    createSlug,
+    average,
+    isPalindrome
+};
