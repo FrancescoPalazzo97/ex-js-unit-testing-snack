@@ -5,4 +5,12 @@ const getInitials = string => {
 
 const createSlug = string => string.toLowerCase().trim();
 
-module.exports = { getInitials, createSlug };
+const average = arr => {
+    const sum = arr.reduce((acc, num) => {
+        if (isNaN(num)) throw new Error(`Sono consentiti solo numeri`);
+        return acc += num;
+    }, 0);
+    return sum / arr.length;
+};
+
+module.exports = { getInitials, createSlug, average };
