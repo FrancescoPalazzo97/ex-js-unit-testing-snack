@@ -3,7 +3,9 @@ const {
     createSlug,
     average,
     isPalindrome,
-    findPostById
+    findPostById,
+    addPost,
+    removePost
 } = require('./snacks');
 
 // Snack 1
@@ -36,7 +38,7 @@ test("La funzione isPalindrome verifica se una stringa è un palindromo.", () =>
     expect(isPalindrome('Avido')).toBeFalsy();
 })
 
-// Snack 2, 4, 6
+// Snack 2, 4, 6, 10
 describe(`Test della funzione createSlug che dovrebbe restituire dei slug data una stringa e lanciare errori nel caso non siano stringhe`, () => {
     // Snack 2
     describe("La funzione createSlug restituisce una stringa in lowercase.", () => {
@@ -67,11 +69,19 @@ describe(`Test della funzione createSlug che dovrebbe restituire dei slug data u
             expect(() => createSlug({})).toThrow();
         });
     });
+    // Snack 10 (BONUS)
 });
 
+let posts;
 
-const posts = ['Cyberpunk 2077', 'Outer Wilds', 'Mass Effect 2']
-    .map((g, i) => ({ id: i + 1, title: g, slug: createSlug(g) }));
+beforeEach(() => {
+    posts = ['Cyberpunk 2077', 'Outer Wilds', 'Mass Effect 2']
+        .map((g, i) => ({ id: i + 1, title: g, slug: createSlug(g) }));
+});
+
+afterEach(() => {
+    posts = [];
+});
 
 // Snack 7
 describe("La funzione findPostById restituisce il post corretto dato l'array di post e l'id", () => {
@@ -114,3 +124,24 @@ describe("La funzione findPostById restituisce il post corretto dato l'array di 
         });
     });
 });
+
+// Snack 8, 9
+describe('Test con addPost e removePost', () => {
+    // Snack 8 (BONUS)
+    test("Dopo aver aggiunto un post con la funzione addPost, l'array posts deve contenere un elemento in più.", () => {
+        expect(addPost(posts, { id: 4, title: 'Expedion 33', slug: createSlug('Expedion 33') })).toHaveLength(4);
+    });
+    test("Dopo aver rimosso un post con la funzione removePost, l'array posts deve contenere un elemento in meno.", () => {
+        expect(removePost(posts, 1)).toHaveLength(2);
+    });
+    // Snack 9 (BONUS)
+    describe("Se si tenta di aggiungere un post con un id o uno slug già esistente, la funzione addPost deve lanciare un errore.", () => {
+        test(`Con ID già presente`, () => {
+            expect(() => addPost(posts, { id: 3, title: 'Expedion 33', slug: createSlug('Expedion 33') })).toThrow();
+        });
+        test(`Con slug già presente`, () => {
+            expect(() => addPost(posts, { id: 4, title: 'Expedion 33', slug: createSlug('Outer Wilds') })).toThrow();
+        })
+    })
+});
+

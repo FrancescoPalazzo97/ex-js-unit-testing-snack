@@ -41,10 +41,24 @@ const findPostById = (arr, id) => {
     return postToFind;
 }
 
+const addPost = (arr, newObj) => {
+    arr.forEach(obj => {
+        if (obj.id === newObj.id) throw new Error(`Errore: Id già esistente`);
+        if (obj.slug === newObj.slug) throw new Error(`Errore: Slug già esistente`);
+    })
+    return [...arr, newObj];
+}
+
+const removePost = (arr, postId) => {
+    return arr.filter(p => p.id !== postId);
+}
+
 module.exports = {
     getInitials,
     createSlug,
     average,
     isPalindrome,
-    findPostById
+    findPostById,
+    addPost,
+    removePost
 };
