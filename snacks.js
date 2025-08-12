@@ -4,7 +4,7 @@ const getInitials = string => {
     return `${name[0].toUpperCase()}.${surname[0].toUpperCase()}.`;
 };
 
-// Snack 2 e 4
+// Snack 2, 4 e 6
 const createSlug = string => {
     if (!string) throw new Error('Errore: Stringa vuota');
     if (Array.isArray(string)) throw new Error('Errore: Non può essere un array');
@@ -32,9 +32,19 @@ const isPalindrome = string => {
     return stringWithoutSpaces === stringWithoutSpaces.split('').reverse().join('');
 }
 
+// Snack 7
+const findPostById = (arr, id) => {
+    if (isNaN(id)) throw new Error('Errore: ID deve essere un numero!');
+    if (!Array.isArray(arr)) throw new Error('Errore: Non è stato passato un array!');
+    const [postToFind] = arr.filter(item => item.id === id);
+    if (!postToFind) throw new Error('Errore: Il post non è stato trovato!');
+    return postToFind;
+}
+
 module.exports = {
     getInitials,
     createSlug,
     average,
-    isPalindrome
+    isPalindrome,
+    findPostById
 };

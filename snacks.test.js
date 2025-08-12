@@ -1,8 +1,10 @@
+const { title } = require('process');
 const {
     getInitials,
     createSlug,
     average,
-    isPalindrome
+    isPalindrome,
+    findPostById
 } = require('./snacks')
 
 // Snack 1
@@ -53,4 +55,40 @@ test("La funzione createSlug lancia un errore se il titolo è vuoto o non valido
     expect(() => createSlug(8)).toThrow();
     expect(() => createSlug(['ciao', 'mondo'])).toThrow();
     expect(() => createSlug({})).toThrow();
+})
+
+const posts = [
+    {
+        id: 1,
+        title: 'Cyberpunk 2077',
+        slug: createSlug('Cyberpunk 2077')
+    },
+    {
+        id: 2,
+        title: 'Outer Wilds',
+        slug: createSlug('Outer Wilds')
+    },
+    {
+        id: 3,
+        title: 'Mass Effect 2',
+        slug: createSlug('Mass Effect 2')
+    }
+]
+
+// Snack 7
+test("La funzione findPostById restituisce il post corretto dato l'array di post e l'id", () => {
+    expect(findPostById(posts, 2)).toEqual({
+        id: 2,
+        title: 'Outer Wilds',
+        slug: createSlug('Outer Wilds')
+    });
+    expect(findPostById(posts, 1)).toEqual({
+        id: 1,
+        title: 'Cyberpunk 2077',
+        slug: createSlug('Cyberpunk 2077')
+    });
+    expect(() => findPostById(posts, 10)).toThrow();
+    expect(() => findPostById(posts, 'ciao')).toThrow();
+    expect(() => findPostById(posts[0], 2)).toThrow();
+    expect(() => findPostById('ciao', 2)).toThrow();
 })
