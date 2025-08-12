@@ -1,6 +1,8 @@
 const getInitials = string => {
-    const [name, surname] = string.split(' ');
-    return `${name[0]}.${surname[0]}.`;
+    const [name, surname] = string.split(' ').filter(item => item !== '');
+    return `${name[0].toUpperCase()}.${surname[0].toUpperCase()}.`;
 };
 
-module.exports = { getInitials };
+const createSlug = string => string.toLowerCase();
+
+module.exports = { getInitials, createSlug };
