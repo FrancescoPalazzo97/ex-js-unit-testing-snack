@@ -6,6 +6,9 @@ const getInitials = string => {
 
 // Snack 2 e 4
 const createSlug = string => {
+    if (string === '') throw new Error('Errore: Stringa vuota');
+    if (Array.isArray(string)) throw new Error('Errore: Non può essere un array');
+    if (typeof string === 'object') throw new Error('Errore: Non può essere un object');
     return string
         .split(' ')
         .filter(item => item !== '')
