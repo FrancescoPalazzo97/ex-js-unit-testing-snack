@@ -8,6 +8,17 @@ const {
     removePost
 } = require('./snacks');
 
+let posts;
+
+beforeEach(() => {
+    posts = ['Cyberpunk 2077', 'Outer Wilds', 'Mass Effect 2']
+        .map((g, i) => ({ id: i + 1, title: g, slug: createSlug(g) }));
+});
+
+afterEach(() => {
+    posts = [];
+});
+
 // Snack 1
 test("La funzione getInitials restituisce le iniziali di un nome completo.", () => {
     expect(getInitials('Francesco Palazzo')).toBe('F.P.');
@@ -61,7 +72,7 @@ describe(`Test della funzione createSlug che dovrebbe restituire dei slug data u
     });
     // Snack 6
     describe("La funzione createSlug lancia un errore se il titolo è vuoto o non valido.", () => {
-        test(`Gli passo valoti diversi da stringhe`, () => {
+        test(`Gli passo valori diversi da stringhe`, () => {
             expect(() => createSlug('')).toThrow();
             expect(() => createSlug(null)).toThrow();
             expect(() => createSlug(8)).toThrow();
@@ -70,17 +81,12 @@ describe(`Test della funzione createSlug che dovrebbe restituire dei slug data u
         });
     });
     // Snack 10 (BONUS)
-});
-
-let posts;
-
-beforeEach(() => {
-    posts = ['Cyberpunk 2077', 'Outer Wilds', 'Mass Effect 2']
-        .map((g, i) => ({ id: i + 1, title: g, slug: createSlug(g) }));
-});
-
-afterEach(() => {
-    posts = [];
+    describe("Se viene passato un array di post come secondo argomento, la funzione createSlug incrementa di 1 se lo slug esiste già.", () => {
+        test(`Gli passo un array come secondo argomento`, () => {
+            expect(createSlug('Cyberpunk 2077', posts)).toBe('cyberpunk-2077-1');
+            expect(createSlug('Expedition 33', posts)).toBe('expedition-33');
+        })
+    })
 });
 
 // Snack 7

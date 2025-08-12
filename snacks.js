@@ -5,16 +5,27 @@ const getInitials = string => {
 };
 
 // Snack 2, 4 e 6
-const createSlug = string => {
+const createSlug = (string, posts) => {
     if (!string) throw new Error('Errore: Stringa vuota');
     if (Array.isArray(string)) throw new Error('Errore: Non può essere un array');
     if (typeof string === 'object') throw new Error('Errore: Non può essere un object');
     if (!isNaN(string)) throw new Error('Errore: Non può essere un numero');
-    return string
+
+    let slug = string
         .split(' ')
         .filter(item => item !== '')
         .map(w => w.toLowerCase())
         .join('-');
+
+    if (posts) {
+        posts.forEach(p => {
+            if (p.slug === slug) {
+                slug += '-1'
+            }
+        })
+    }
+
+    return slug;
 };
 
 // Snack 3
